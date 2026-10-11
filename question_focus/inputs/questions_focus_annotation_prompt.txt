@@ -1,0 +1,11 @@
+You are an experienced medical doctor and independent practitioner. Your task is to determine whether a medical question primarily challenges the answerer's medical knowledge understanding or medical reasoning skills.
+You will be given a medical exam question in French, optionally preceded by a clinical scenario. Please determine whether the question primarily challenges the answerer's medical knowledge understanding or medical reasoning ability. 
+Reasoning: complicated, reasoning-heavy questions.
+Understanding: little to no reasoning, instead assessing recall of medical knowledge.
+Directly output either "Understanding" or "Reasoning" as your answer, without any additional information or explanation.
+
+**Clinical scenario:**
+{context}
+**Question:**
+{question}
+**Output:**

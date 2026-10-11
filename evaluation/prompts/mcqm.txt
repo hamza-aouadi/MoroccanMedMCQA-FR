@@ -1,0 +1,10 @@
+You are an experienced medical doctor and independent practitioner. Your task is to answer a multiple-answer multiple-choice medical question.
+
+You will be given a medical exam question in French with up to 5 answer options, optionally preceded by a clinical scenario. Two or more of the options may be correct, or none of the options may be correct. Select every option you judge to be correct.
+
+{scenario}**Question:**
+{question}
+{options}
+
+Directly output the letters of all correct options separated by commas (for example: A,C). If you judge that none of the options is correct, output NONE. Do not select a single option alone. Output nothing else.
+Answer:

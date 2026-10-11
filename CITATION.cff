@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this benchmark or code, please cite the paper below."
+title: "MoroccanMedMCQA-FR: evaluation code"
+authors:
+  - family-names: Aouadi
+    given-names: Hamza
+  - family-names: Nfaoui
+    given-names: El Habib
+  - family-names: El Garouani
+    given-names: Said
+repository-code: "https://github.com/hamza-aouadi/MoroccanMedMCQA-FR"
+license: Apache-2.0
+preferred-citation:
+  type: article
+  title: "Evaluating Large Language Models on Moroccan Medical Faculty Examinations: The MoroccanMedMCQA-FR Benchmark"
+  authors:
+    - family-names: Aouadi
+      given-names: Hamza
+    - family-names: Nfaoui
+      given-names: El Habib
+    - family-names: El Garouani
+      given-names: Said
+  journal: "IEEE Access"
+  year: 2026
+  notes: "To appear."
