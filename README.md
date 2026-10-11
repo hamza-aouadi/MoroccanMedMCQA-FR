@@ -4,7 +4,7 @@ Evaluation code for **MoroccanMedMCQA-FR**, the first French-language medical
 multiple-choice question-answering benchmark derived from official Moroccan
 medical faculty examinations.
 
-- **Paper:** *Evaluating Large Language Models on Moroccan Medical Faculty Examinations: The MoroccanMedMCQA-FR Benchmark* — IEEE Access, 2026 *(to appear)*
+- **Paper:** *Evaluating Large Language Models on Moroccan Medical Faculty Examinations: The MoroccanMedMCQA-FR Benchmark*, 2026 *(to appear)*
 - **Dataset:** https://huggingface.co/datasets/hamzaaouadi/MoroccanMedMCQA-FR
   (DOI: [10.57967/hf/8867](https://doi.org/10.57967/hf/8867), license: CC BY-NC 4.0)
 - 6,771 gold-standard questions · 31 specialties · single-answer (MCQU) + multi-answer (MCQM)
