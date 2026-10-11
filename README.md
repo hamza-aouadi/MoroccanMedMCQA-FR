@@ -21,7 +21,7 @@ medical faculty examinations.
 ├── question_focus/                 # cognitive-focus annotation pipeline (Understanding / Reasoning)
 │   ├── annotate.py                 #   GPT-4o labeling + GPT-5.5 validation
 │   ├── compare_labels.py           #   agreement + Cohen's kappa between two label files
-│   ├── inputs/                     #   prompt (Fig. 5) + 279 blind validation Qs + the two doctors' labels
+│   ├── inputs/                     #   annotation prompt + 279 blind validation Qs + the two doctors' labels
 │   └── results/                    #   label outputs land here
 │
 ├── evaluation/                     # run models over the benchmark and score them
@@ -29,9 +29,9 @@ medical faculty examinations.
 │   ├── openrouter.py               #   call() for the OpenRouter models
 │   ├── vertex.py                   #   call() for the Vertex models
 │   ├── parser.py                   #   answer extraction (letters / NONE / unparseable)
-│   ├── metrics.py                  #   Accuracy (MCQU), EMR + Hamming/Jaccard (MCQM)
-│   ├── baselines.py                #   naive-baseline predictions (no model calls)
-│   ├── prompts/                    #   mcqu.txt (Fig. 6) + mcqm.txt (Fig. 7)
+│   ├── metrics.py                  #   Accuracy (MCQU), EMR + Hamming (MCQM)
+│   ├── baselines.py                #   naive-baseline prediction
+│   ├── prompts/                    #   mcqu prompt: mcqu.txt + mcqm prompt: mcqm.txt
 │   ├── inputs/                     #   answer-free test set (MoroccanMedMCQA-FR_test_no_answers.json)
 │   └── results/                    #   predictions + baseline CSVs land here
 │
@@ -105,12 +105,12 @@ python metrics.py                                  # scores every results/*_pred
 # or: python metrics.py results/<label>_predictions.jsonl
 ```
 
-It prompts for the path to your **private answered** test JSON (the file WITH
+It prompts for the path to **private answered** test JSON (the file WITH
 `correct_answers`), joins by `id`, and prints per model:
 
 - **MCQU** — Accuracy: `1` if the predicted letter equals the gold letter.
 - **MCQM** — Exact Match Ratio (EMR): `1` if the predicted set equals the gold set.
-- **MCQM** — Hamming Score = **Jaccard** index `|G ∩ P| / |G ∪ P|` (both sets empty → `1.0`).
+- **MCQM** — Hamming Score = index `|G ∩ P| / |G ∪ P|` (both sets empty → `1.0`).
 
 `UNPARSEABLE` / `ERROR` predictions count as wrong.
 
@@ -142,7 +142,7 @@ If you use this benchmark or code, please cite:
 @article{aouadi2026moroccanmedmcqa,
   title   = {Evaluating Large Language Models on Moroccan Medical Faculty Examinations: The MoroccanMedMCQA-FR Benchmark},
   author  = {Aouadi, Hamza and Nfaoui, El Habib and El Garouani, Said},
-  journal = {IEEE Access},
+  journal = {TBD},
   year    = {2026},
   note    = {To appear}
 }
