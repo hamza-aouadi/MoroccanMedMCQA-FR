@@ -38,13 +38,13 @@ def to_set(pred):
         return None
     return {x for x in p.split("|") if x}
     
-def jaccard (g, p):
+def Hamming_score (g, p):
     u = g | p
     return 1.0 if not u else len(g & p) / len(u)
     
 
 
-def tr(x):
+def truncate(x):
     return int(x * 100) / 100 if x ==x else x
 
 
@@ -68,8 +68,8 @@ def score(pred_path, gold):
             if P is None:
                 emr.append(0); ham.append(0.0)
             else:
-                emr.append(int(P == G)); ham.append(jaccard(G, P))
-    pct = lambda xs: tr(100 * sum(xs) / len(xs)) if xs else float("nan")
+                emr.append(int(P == G)); ham.append(Hamming_score(G, P))
+    pct = lambda xs: truncate(100 * sum(xs) / len(xs)) if xs else float("nan")
     return pct(mcqu), pct(emr), pct(ham)
 
 
