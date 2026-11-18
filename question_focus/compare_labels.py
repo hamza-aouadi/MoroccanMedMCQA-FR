@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Agreement + Cohen's Kappa between two cognitive-focus label files.
+Agreement and Cohen's Kappa between two cognitive-focus label files.
 
 Edit config below, then run: python compare_labels.py
 """
@@ -9,20 +9,20 @@ Edit config below, then run: python compare_labels.py
 import os, json
 from collections import Counter
 
-# ======================= CONFIG =============
+# Configuration
 FILE_A = "inputs/question_focus_validation_BLIND_expert_1_classification.xlsx"
 FILE_B = "inputs/question_focus_validation_BLIND_expert_2_classification.xlsx"
 COL = "expert_label"
-# ==============================================
+
 
 
 
 
 def norm(v):
     s = str(v).strip().lower()
-    if s.startswith("reason"):
+    if s == "reasoning":
         return "Reasoning"
-    if s.startswith("under"):
+    if s == "understanding":
         return "Understanding"
     return None
 
