@@ -6,7 +6,7 @@ Prompts are read from prompts/mcqu.txt and prompts/mcqm.txt
 
 Keys:
     OpenRoutet  -> set OPENROUTER_API_KEY (or set it at prompt).
-    Vertex      -> deploy the model, the npaste its endpoint URL+access token when the runners ask
+    Vertex      -> deploy the model, then paste its endpoint URL+access token when the runners ask
     
 """
 
@@ -14,10 +14,10 @@ import os, sys, json
 import parser as P
 import openrouter, vertex
 
-# ================= CONFIG ================
+# CONFIGURATION
 TEST_PATH = "inputs/MoroccanMedMCQA-FR_test_no_answers.json"
 OUT_DIR = "results"
-# =========================================
+
 
 LETTERS = ["a","b", "c", "d", "e"]
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -25,9 +25,9 @@ MCQU_TEMPLATE = open(os.path.join(HERE, "prompts", "mcqu.txt"), encoding="utf-8"
 MCQM_TEMPLATE = open(os.path.join(HERE, "prompts", "mcqm.txt"), encoding="utf-8").read()
 
 
-# ---- the 36 model---
+# the 36 model
 MODELS = [  
-    # ---------------- OpenRouter ----------------
+    # OpenRouter models
     {"label": "gpt-5.5-high",            "provider": "openrouter", "model": "openai/gpt-5.5",               "reasoning": "high"},
     {"label": "gpt-5.5-none",            "provider": "openrouter", "model": "openai/gpt-5.5",               "reasoning": False, "temperature": 0},
     {"label": "gpt-4o",                  "provider": "openrouter", "model": "openai/gpt-4o-2024-08-06",     "temperature": 0},
@@ -49,7 +49,7 @@ MODELS = [
     {"label": "gemini-3.5-flash-lite-minimal","provider": "openrouter", "model": "google/gemini-3.5-flash-lite", "reasoning": "minimal", "temperature": 0},
     {"label": "gemini-3.5-flash-lite-high",   "provider": "openrouter", "model": "google/gemini-3.5-flash-lite", "reasoning": "high",    "temperature": 0},
 
-    # ---------------- Vertex ----------------
+    # Vertex models
     {"label": "grok-4.20-nonreasoning",  "provider": "vertex", "model": "xai/grok-4.20-non-reasoning", "temperature": 0, "max_tokens": 2048},
     {"label": "grok-4.20-reasoning-high","provider": "vertex", "model": "xai/grok-4.20-reasoning",     "reasoning_effort": "high", "max_tokens": 8192},
     {"label": "gpt-oss-120b-low",        "provider": "vertex", "model": "openai/gpt-oss-120b", "extra_body": {"reasoning_effort": "low"},  "temperature": 0, "max_tokens": 8192},
@@ -114,7 +114,7 @@ def run_model(cfg, records):
     call = openrouter.call if cfg["provider"] == "openrouter" else vertex.call
     os.makedirs(OUT_DIR, exist_ok=True)
     out_path = os.path.join(OUT_DIR, f"{cfg['label']}_predictions.jsonl")
-    with open (out_path, "w", encoding="utf-8") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         for i, rec in enumerate(records, 1):
             qt = rec.get("question_type")
             template = MCQU_TEMPLATE if qt == "MCQU" else MCQM_TEMPLATE
@@ -125,7 +125,7 @@ def run_model(cfg, records):
                 raw, pred = f"ERROR: {type(e).__name__}:{e}", "ERROR"
             f.write(json.dumps({"id": rec.get("id"), "question_type": qt, "question_focus": rec.get("question_focus"), "speciality": rec.get("speciality"), "pred": pred, "raw": raw}, ensure_ascii=False) + "\n")
             f.flush()
-            if i%50 ==0:
+            if i%50==0:
                 print(f" {i}/{len(records)}")
     print(f"    saved {len(records)} -> {out_path}")
 
