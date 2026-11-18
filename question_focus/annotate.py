@@ -8,18 +8,18 @@ Cognitive-focus annotation (Understanding/Reasoning) for MoroccanMedMCQA-FR.
 3. Run: python annotate.py
 
 Resume-safe: re-running continues where it stopped.
-Use MODEL = gpt-4o for the main run, gpt-5.5 for the validation check.
+model used: gpt-4o for the main run, gpt-5.5 for the validation check.
 """
 
 import os, json, time
 from openai import OpenAI
 
-# ======================= CONFIG ===================
+# CONFIGURATION
 DATA_PATH = "inputs/question_focus_validation_BLIND.xlsx"
 OUT_PATH = "results/question_focus_labels.jsonl"
 MODEL = "gpt-4o-2024-08-06"
 EFFORT = "high"
-# ===============================================
+
 
 PROMPT = """You are an experienced medical doctor and independent practitioner. Your task is to determine whether a medical question primarily challenges the answerer's medical knowledge understanding or medical reasoning skills.
 You will be given a medical exam question in French, optionally preceded by a clinical scenario. Please determine whether the question primarily challenges the answerer's medical knowledge understanding or medical reasoning ability. 
@@ -43,10 +43,10 @@ def build_prompt(rec):
 
 
 def parse_label(raw):
-    t = (raw or "").lower()
-    if "reasoning" in t and "understanding" not in t:
+    t = (raw or "").strip().lower()
+    if t == "reasoning":
         return "Reasoning"
-    if "understanding" in t and "reasoning" not in t:
+    if t == "understanding":
         return "Understanding"
     return None
 
