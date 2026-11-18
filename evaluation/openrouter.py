@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Openrouter call function
-Reads OPENROUTER_API_KEY from environment, or prompt once
+Reads OPENROUTER_API_KEY from environment, or prompt once for it
 """
 
 import os
@@ -27,7 +27,7 @@ def _reasoning_block(cfg):
         return {"enabled": False}
     if r is True:
         return {"enabled": True}
-    if isinstance (r, int):
+    if isinstance(r, int):
         return {"enabled": True, "max_tokens": r}
     return {"enabled": True, "effort": r}
     
