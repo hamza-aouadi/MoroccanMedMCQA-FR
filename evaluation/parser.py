@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+ee#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Answer extraction for MoroccanMedMCQA-FR modele outputs.
 
-Finds the answer whther a model puts it first or last
+Finds the answer whether a model puts it first or last
 """
 
 
